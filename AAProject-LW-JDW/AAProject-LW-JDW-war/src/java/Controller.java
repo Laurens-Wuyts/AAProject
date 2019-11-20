@@ -33,6 +33,15 @@ public class Controller extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessie=request.getSession();
+        switch (request.getParameter("btn")) {
+            case "Logout":
+            {
+                sessie.invalidate();
+                break;
+            }
+           default:
+            break;
+           }
         if (request.isUserInRole("Docent")){
             sessie.setAttribute("type","Docent");
             RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
@@ -49,6 +58,7 @@ public class Controller extends HttpServlet {
             view.forward (request,response );
         }
         
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,9 +73,10 @@ public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                 
         processRequest(request, response);
+    
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
