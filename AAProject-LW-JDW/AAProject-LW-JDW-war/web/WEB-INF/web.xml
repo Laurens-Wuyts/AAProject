@@ -13,9 +13,6 @@
             30
         </session-timeout>
     </session-config>
-    <welcome-file-list>
-        <welcome-file>/ctrl&gt;do</welcome-file>
-    </welcome-file-list>
     <security-constraint>
         <display-name>Constraint</display-name>
         <web-resource-collection>
