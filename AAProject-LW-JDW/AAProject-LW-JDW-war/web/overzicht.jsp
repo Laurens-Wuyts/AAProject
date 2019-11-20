@@ -14,7 +14,7 @@
     <body>
         <h1>Hello ${type}</h1>
         <form action="ctrl.do" method="post">
-            <intput type="submit" name="btn" value="Logout" />
+            <input type="submit" name="btn" value="Logout" />
         </form>
     </body>
 </html>
