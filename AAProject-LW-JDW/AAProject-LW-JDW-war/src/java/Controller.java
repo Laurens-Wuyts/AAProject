@@ -38,7 +38,8 @@ public class Controller extends HttpServlet {
                 case "Logout":
                 {
                     sessie.invalidate();
-                    break;
+                    response.sendRedirect("ctrl.do" );
+                    return;
                 }
                default:
                 break;
