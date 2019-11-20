@@ -33,15 +33,17 @@ public class Controller extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessie=request.getSession();
-        switch (request.getParameter("btn")) {
-            case "Logout":
-            {
-                sessie.invalidate();
+        if(request.getParameterMap().containsKey("btn")){
+            switch (request.getParameter("btn")) {
+                case "Logout":
+                {
+                    sessie.invalidate();
+                    break;
+                }
+               default:
                 break;
-            }
-           default:
-            break;
-           }
+               }
+        }
         if (request.isUserInRole("Docent")){
             sessie.setAttribute("type","Docent");
             RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
