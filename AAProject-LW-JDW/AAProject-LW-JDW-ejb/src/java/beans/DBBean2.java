@@ -132,6 +132,15 @@ public class DBBean2 implements DBBean2Remote {
 
     }
     @Override
+    public void deleteMachine(int mid) {
+        Machines r = em.createNamedQuery("Machines.findByMid", Machines.class).setParameter("mid", new BigDecimal(mid)).getSingleResult();
+        em.remove(r);
+    }
+     public void deleteMoment(int moid) {
+        Momenten r = em.createNamedQuery("Momenten.findByMoid", Momenten.class).setParameter("moid", new BigDecimal(moid)).getSingleResult();
+        em.remove(r);
+    }
+    @Override
      public List getReservaties(int m){
 	
          List<Reservaties> res= em.createQuery("SELECT r FROM Reservaties r, Momenten m WHERE m.mid =:mid and m.moid=r.moid").setParameter("mid",new BigDecimal(m)).getResultList();
