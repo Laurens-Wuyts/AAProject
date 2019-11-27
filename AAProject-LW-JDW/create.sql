@@ -31,15 +31,15 @@ CREATE TABLE Momenten (
 	mid   integer,
 	strt  integer,
 	datum date,
-        FOREIGN KEY (mid) REFERENCES Machines(mid)
+        FOREIGN KEY (mid) REFERENCES Machines(mid) ON DELETE CASCADE
 );
 
 CREATE TABLE Reservaties (
 	rid   integer PRIMARY KEY,
 	login varchar(20),
         moid  integer,
-        FOREIGN KEY (login) REFERENCES Gebruikers(login),
-        FOREIGN KEY (moid) REFERENCES Momenten(moid)
+        FOREIGN KEY (login) REFERENCES Gebruikers(login) ON DELETE CASCADE,
+        FOREIGN KEY (moid) REFERENCES Momenten(moid) ON DELETE CASCADE
 );
 
 insert into Gebruikers values ('r0614393', 'passwd', 'Laurens Wuyts', 'MasterEi');

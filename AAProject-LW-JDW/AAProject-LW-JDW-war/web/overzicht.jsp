@@ -27,14 +27,13 @@
                             </c:if>
                         </div>
                         <div class='info'>
-                            <h3>${machine.naam}</h3>
-                            <p>Lokaal: ${machine.lokaal}</p>
-                            <p>Opleiding: ${machine.opl}</p>
+                            <h3>${machine.mnaam}</h3>
+                            <p>Opleiding: ${machine.mopl}</p>
                         </div>
                         <div class='btns'>
                             <form action="<c:url value='ctrl.do' />" method='POST'>
-                                <c:if test="${!(type == 'Docent')}"><input class='light btn' type='submit' name="btn" value='Reserveer' /></c:if>
-                                <c:if test="${!(type == 'Extern')}"><input class='light btn' type='submit' name="btn" value='Details' /></c:if>
+                                <c:if test="${type != 'Docent'}"><input class='light btn' type='submit' name="btn" value='Reserveer' /></c:if>
+                                <c:if test="${type != 'Extern'}"><input class='light btn' type='submit' name="btn" value='Details' /></c:if>
                             </form>
                         </div>
                     </div>
