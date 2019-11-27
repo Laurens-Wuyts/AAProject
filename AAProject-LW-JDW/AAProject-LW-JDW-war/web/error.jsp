@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Error</h1>
+        <h1>Error: We zorgen dat dit zo snel mogelijk in orde komt.</h1>
     </body>
 </html>
