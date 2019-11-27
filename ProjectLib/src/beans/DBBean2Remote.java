@@ -23,4 +23,5 @@ public interface DBBean2Remote {
     public void MachineToevoegen(int login, String naam,String info,String msnr,String aprs,String hprs);
     public List getReservaties(int m);
     public void deleteMachine(int mid);
+    public void deleteMoment(int moid);
 }

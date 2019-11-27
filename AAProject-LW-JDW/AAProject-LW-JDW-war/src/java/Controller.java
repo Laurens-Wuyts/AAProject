@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import beans.*;
+import java.net.*;
+import java.util.*;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,6 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(urlPatterns = {"/ctrl.do"})
 public class Controller extends HttpServlet {
+    @EJB private DBBean2Remote Bean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +40,7 @@ public class Controller extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessie=request.getSession();
+               
         if(request.getParameterMap().containsKey("btn")){
             switch (request.getParameter("btn")) {
                 case "Logout":
@@ -45,21 +53,27 @@ public class Controller extends HttpServlet {
                 break;
                }
         }
-        if (request.isUserInRole("Docent")){
-            sessie.setAttribute("type","Docent");
-            RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
-            view.forward (request,response );
-        }
-        else if (request.isUserInRole("Student")){
-            sessie.setAttribute("type","Student");
-            RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
-            view.forward (request,response );
-        }
-        else{
-            sessie.setAttribute("type","Extern");
-            RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
-            view.forward (request,response );
-        }
+        if (sessie.getAttribute("type")==null){
+            if (request.isUserInRole("Docent")){
+
+                sessie.setAttribute("type","Docent");
+                RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                view.forward (request,response );
+            }
+            else if (request.isUserInRole("Student")){
+                sessie.setAttribute("type","Student");
+                RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                view.forward (request,response );
+            }
+            else{
+                sessie.setAttribute("type","Extern");
+                RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                view.forward (request,response );
+            }
+            String name = request.getUserPrincipal().getName();
+            sessie.setAttribute("login",name);
+            sessie.setAttribute("gebruiker",Bean.getGebruiker(name));
+           }
         
         
     }
@@ -103,5 +117,9 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+ @Override
+    public void init(){
+        List<Machines> ma= Bean.getMachines();
+        getServletContext().setAttribute("machines",ma);
+    }
 }
