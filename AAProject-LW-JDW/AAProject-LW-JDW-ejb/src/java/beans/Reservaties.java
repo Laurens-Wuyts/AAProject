@@ -7,21 +7,17 @@ package beans;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,17 +38,12 @@ public class Reservaties implements Serializable {
     @NotNull
     @Column(name = "RID")
     private BigDecimal rid;
-    @JoinTable(name = "RESMOM", joinColumns = {
-        @JoinColumn(name = "RID", referencedColumnName = "RID")}, inverseJoinColumns = {
-        @JoinColumn(name = "MOID", referencedColumnName = "MOID")})
-    @ManyToMany
-    private Collection<Momenten> momentenCollection;
     @JoinColumn(name = "LOGIN", referencedColumnName = "LOGIN")
     @ManyToOne
     private Gebruikers login;
-    @JoinColumn(name = "MID", referencedColumnName = "MID")
+    @JoinColumn(name = "MOID", referencedColumnName = "MOID")
     @ManyToOne
-    private Machines mid;
+    private Momenten moid;
 
     public Reservaties() {
     }
@@ -69,15 +60,6 @@ public class Reservaties implements Serializable {
         this.rid = rid;
     }
 
-    @XmlTransient
-    public Collection<Momenten> getMomentenCollection() {
-        return momentenCollection;
-    }
-
-    public void setMomentenCollection(Collection<Momenten> momentenCollection) {
-        this.momentenCollection = momentenCollection;
-    }
-
     public Gebruikers getLogin() {
         return login;
     }
@@ -86,12 +68,12 @@ public class Reservaties implements Serializable {
         this.login = login;
     }
 
-    public Machines getMid() {
-        return mid;
+    public Momenten getMoid() {
+        return moid;
     }
 
-    public void setMid(Machines mid) {
-        this.mid = mid;
+    public void setMoid(Momenten moid) {
+        this.moid = moid;
     }
 
     @Override

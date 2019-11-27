@@ -63,8 +63,6 @@ public class Machines implements Serializable {
     @Column(name = "HPRS")
     private BigInteger hprs;
     @OneToMany(mappedBy = "mid")
-    private Collection<Reservaties> reservatiesCollection;
-    @OneToMany(mappedBy = "mid")
     private Collection<Momenten> momentenCollection;
 
     public Machines() {
@@ -128,15 +126,6 @@ public class Machines implements Serializable {
 
     public void setHprs(BigInteger hprs) {
         this.hprs = hprs;
-    }
-
-    @XmlTransient
-    public Collection<Reservaties> getReservatiesCollection() {
-        return reservatiesCollection;
-    }
-
-    public void setReservatiesCollection(Collection<Reservaties> reservatiesCollection) {
-        this.reservatiesCollection = reservatiesCollection;
     }
 
     @XmlTransient
