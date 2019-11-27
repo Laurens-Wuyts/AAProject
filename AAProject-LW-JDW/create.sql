@@ -1,5 +1,4 @@
 DROP TABLE groepen PURGE;
-DROP TABLE resmom PURGE;
 DROP TABLE reservaties PURGE;
 DROP TABLE momenten PURGE;
 DROP TABLE gebruikers PURGE;
@@ -27,14 +26,6 @@ CREATE TABLE Machines (
 	hprs  integer		-- Huurprijs
 );
 
-CREATE TABLE Reservaties (
-	rid   integer PRIMARY KEY,
-	login varchar(20),
-	mid   integer,
-        FOREIGN KEY (mid) REFERENCES Machines(mid),
-        FOREIGN KEY (login) REFERENCES Gebruikers(login) 
-);
-
 CREATE TABLE Momenten (
 	moid  integer PRIMARY KEY,
 	mid   integer,
@@ -43,18 +34,38 @@ CREATE TABLE Momenten (
         FOREIGN KEY (mid) REFERENCES Machines(mid)
 );
 
-CREATE TABLE Resmom (
-	rid   integer,
-	moid  integer,
-        FOREIGN KEY (rid) REFERENCES Reservaties(rid),
+CREATE TABLE Reservaties (
+	rid   integer PRIMARY KEY,
+	login varchar(20),
+        moid  integer,
+        FOREIGN KEY (login) REFERENCES Gebruikers(login),
         FOREIGN KEY (moid) REFERENCES Momenten(moid)
 );
 
-
 insert into Gebruikers values ('r0614393', 'passwd', 'Laurens Wuyts', 'MasterEi');
 insert into Gebruikers values ('r0614941', 'passwd', 'Jonas De Wit', 'MasterEi');
-insert into Gebruikers values ('admin', 'admin', '', '');
+insert into Gebruikers values ('admin', 'admin', 'Admin', 'MasterEi');
 
 insert into Groepen values ('r0614393', 'Student');
 insert into Groepen values ('r0614941', 'Extern');
 insert into Groepen values ('admin', 'Docent');
+
+insert into Machines values (1, 'Computer 1', 'Lokaal A202', 'MasterEi', 1234, 350, 5);
+insert into Machines values (2, 'Computer 2', 'Lokaal A202', 'MasterEi', 5678, 250, 5);
+insert into Machines values (3, 'Computer 3', 'Lokaal A202', 'MasterEi', 9101, 400, 5);
+insert into Machines values (4, 'Computer 4', 'Lokaal C106', 'chem', 1121, 2000, 50);
+insert into Machines values (5, 'Computer 5', 'Lokaal C106', 'chem', 3141, 2000, 50);
+
+insert into Momenten values (1, 2, 11, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (2, 2, 12, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (3, 2, 13, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (4, 2, 11, TO_DATE('28/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (5, 3, 11, TO_DATE('30/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (6, 3, 9 , TO_DATE('01/12/2019', 'DD/MM/YYYY'));
+insert into Momenten values (7, 1, 10, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (8, 5, 12, TO_DATE('28/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (9, 4, 15, TO_DATE('30/11/2019', 'DD/MM/YYYY'));
+
+insert into Reservaties values (1, 'r0614393', 3);
+insert into Reservaties values (2, 'r0614941', 4);
+insert into Reservaties values (3, 'admin', 7);
