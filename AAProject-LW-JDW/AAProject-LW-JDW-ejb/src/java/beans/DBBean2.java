@@ -47,7 +47,7 @@ public class DBBean2 implements DBBean2Remote {
               return ma;
    }
    @Override
-    public List getMomentenMachine(BigDecimal mid){
+    public List getMomentenMachine(Object mid){
                List mom = em.createQuery("SELECT m FROM Momenten m WHERE m.mid = :mid").setParameter("mid",mid).getResultList();
                return mom;
     }
