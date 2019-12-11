@@ -67,7 +67,7 @@ public class Controller extends HttpServlet {
                            Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
                            sessie.setAttribute("m",m);
                     }
-                    RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
+                    RequestDispatcher view = request.getRequestDispatcher ("reservaties.jsp" );
                     view.forward (request,response );
                 }
                default:
