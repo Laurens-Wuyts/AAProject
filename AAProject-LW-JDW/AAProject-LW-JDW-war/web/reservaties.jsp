@@ -4,7 +4,10 @@
     Author     : r0614393
 --%>
 
+<%@page import="java.sql.Date"%>
+<%@page import="java.util.List"%>
 <%@page import="java.time.YearMonth"%>
+<%@page import="beans.Momenten"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% YearMonth yearMonthObject = (YearMonth)session.getAttribute("date");
@@ -46,7 +49,13 @@
                         if(dag <= 0 || dag > daysInMonth) {
                             out.println("niet_maand'></td>");
                         } else {
-                            out.println("'>" + dag + "</td>");
+                            out.println("'>" + dag);
+                            for(Momenten m : (List<Momenten>)session.getAttribute("momVrij")) {
+                                Date d = Date.valueOf(yearMonthObject.atDay(i));
+                                if(m.getDatum().compareTo(d) == 0)
+                                    out.println("<div class='uur vrij'>" + m.getDatum().getHours() + " Vrij</div>");
+                            }
+                            out.println("</td>");
                         }
                     }
                     out.println("</tr>");
