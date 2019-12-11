@@ -30,8 +30,8 @@
 
             <div class='btns'>
                 <form action="<c:url value='ctrl.do' />" method='POST'>
-                        <input class='dark btn' type='submit' value='Reserveer' />
-                        <input class='dark btn' type='submit' value='Overzicht' />
+                        <input class='dark btn' type='submit' name='btn'  value='Reserveer' />
+                        <input class='dark btn' type='submit' name='btn'  value='Overzicht' />
                 </form>
             </div>
         </div>
