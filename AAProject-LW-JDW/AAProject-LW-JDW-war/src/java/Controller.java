@@ -19,6 +19,7 @@ import java.util.*;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
+import java.time.YearMonth;
 
 /**
  *
@@ -27,6 +28,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns = {"/ctrl.do"})
 public class Controller extends HttpServlet {
     @EJB private DBBean2Remote Bean;
+    private YearMonth y;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -70,6 +72,7 @@ public class Controller extends HttpServlet {
                     Machines ma = (Machines)sessie.getAttribute("m");
                     List<Momenten> mom = Bean.getMomentenMachine(ma.getMid());
                     sessie.setAttribute("mom",mom);
+                    sessie.setAttribute("date",y);                    
                     RequestDispatcher view = request.getRequestDispatcher ("reservaties.jsp" );
                     view.forward (request,response );
                 }
@@ -145,5 +148,7 @@ public class Controller extends HttpServlet {
     public void init(){
         List<Machines> ma= Bean.getMachines();
         getServletContext().setAttribute("machines",ma);
+        this.y = YearMonth.now();
+        
     }
 }
