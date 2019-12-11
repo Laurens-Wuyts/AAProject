@@ -49,16 +49,24 @@ public class Controller extends HttpServlet {
                     response.sendRedirect("ctrl.do" );
                     return;
                 }
+                case "Overzicht":
+                {
+                    RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                    view.forward (request,response );
+                }
                 case "Details":
                 {
-                    sessie.setAttribute("m",request.getParameter("mid"));
+                    Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
+                    sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
                 }
                 case "Reserveer":
                 {   
-                    if (request.getParameter("mid")!=null) 
-                        sessie.setAttribute("m",request.getParameter("mid"));
+                    if (request.getParameter("mid")!=null){ 
+                           Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
+                           sessie.setAttribute("m",m);
+                    }
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
                 }
