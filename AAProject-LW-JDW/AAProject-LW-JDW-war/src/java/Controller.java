@@ -49,6 +49,19 @@ public class Controller extends HttpServlet {
                     response.sendRedirect("ctrl.do" );
                     return;
                 }
+                case "Details":
+                {
+                    sessie.setAttribute("m",request.getParameter("mid"));
+                    RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
+                    view.forward (request,response );
+                }
+                case "Reserveer":
+                {   
+                    if (request.getParameter("mid")!=null) 
+                        sessie.setAttribute("m",request.getParameter("mid"));
+                    RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
+                    view.forward (request,response );
+                }
                default:
                 break;
                }
