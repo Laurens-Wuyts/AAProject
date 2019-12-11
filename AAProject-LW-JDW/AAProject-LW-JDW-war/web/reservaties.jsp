@@ -53,7 +53,7 @@
                             for(Momenten m : (List<Momenten>)session.getAttribute("momvrij")) {
                                 Date d = Date.valueOf(yearMonthObject.atDay(i));
                                 if(m.getDatum().compareTo(d) == 0)
-                                    out.println("<div class='uur vrij'>" + m.getDatum().getHours() + " Vrij</div>");
+                                    out.println("<div class='uur vrij'>" + m.getStrt() + " Vrij</div>");
                             }
                             out.println("</td>");
                         }
