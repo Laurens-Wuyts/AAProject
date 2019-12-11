@@ -56,15 +56,15 @@ insert into Machines values (3, 'Computer 3', 'Lokaal A202', 'MasterEi', 9101, 4
 insert into Machines values (4, 'Computer 4', 'Lokaal C106', 'chem', 1121, 2000, 50);
 insert into Machines values (5, 'Computer 5', 'Lokaal C106', 'chem', 3141, 2000, 50);
 
-insert into Momenten values (1, 2, 11, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
-insert into Momenten values (2, 2, 12, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
-insert into Momenten values (3, 2, 13, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
-insert into Momenten values (4, 2, 11, TO_DATE('28/11/2019', 'DD/MM/YYYY'));
-insert into Momenten values (5, 3, 11, TO_DATE('30/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (1, 2, 11, TO_DATE('27/12/2019', 'DD/MM/YYYY'));
+insert into Momenten values (2, 2, 12, TO_DATE('27/12/2019', 'DD/MM/YYYY'));
+insert into Momenten values (3, 2, 13, TO_DATE('27/12/2019', 'DD/MM/YYYY'));
+insert into Momenten values (4, 2, 11, TO_DATE('28/12/2019', 'DD/MM/YYYY'));
+insert into Momenten values (5, 3, 11, TO_DATE('30/12/2019', 'DD/MM/YYYY'));
 insert into Momenten values (6, 3, 9 , TO_DATE('01/12/2019', 'DD/MM/YYYY'));
-insert into Momenten values (7, 1, 10, TO_DATE('27/11/2019', 'DD/MM/YYYY'));
-insert into Momenten values (8, 5, 12, TO_DATE('28/11/2019', 'DD/MM/YYYY'));
-insert into Momenten values (9, 4, 15, TO_DATE('30/11/2019', 'DD/MM/YYYY'));
+insert into Momenten values (7, 1, 10, TO_DATE('27/12/2019', 'DD/MM/YYYY'));
+insert into Momenten values (8, 5, 12, TO_DATE('28/12/2019', 'DD/MM/YYYY'));
+insert into Momenten values (9, 4, 15, TO_DATE('30/12/2019', 'DD/MM/YYYY'));
 
 insert into Reservaties values (1, 'r0614393', 3);
 insert into Reservaties values (2, 'r0614941', 4);
