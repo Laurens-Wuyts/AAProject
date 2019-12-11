@@ -19,6 +19,8 @@ public interface DBBean2Remote {
     public List getMachines();
     public Object getMachineMid(int m);
     public List getMomentenMachine(Object mid);
+    public List getVrijMomentenMachine(Object mid);
+    public List getResMomentenMachine(Object mid);
     public boolean isFree(Object moid);
     public void MomentToevoegen(String strt,int mid ,String date);
     public void reserveer(int m, int g);

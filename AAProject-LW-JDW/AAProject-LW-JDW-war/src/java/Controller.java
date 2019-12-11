@@ -70,8 +70,10 @@ public class Controller extends HttpServlet {
                            sessie.setAttribute("m",m);
                     }
                     Machines ma = (Machines)sessie.getAttribute("m");
-                    List<Momenten> mom = Bean.getMomentenMachine(ma);
-                    sessie.setAttribute("mom",mom);
+                    List<Momenten> momvrij = Bean.getVrijMomentenMachine(ma);
+                    List<Momenten> momres = Bean.getResMomentenMachine(ma);
+                    sessie.setAttribute("momvrij",momvrij);
+                    sessie.setAttribute("momres",momres);
                     sessie.setAttribute("date",y);                    
                     RequestDispatcher view = request.getRequestDispatcher ("reservaties.jsp" );
                     view.forward (request,response );
