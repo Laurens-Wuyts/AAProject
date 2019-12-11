@@ -32,6 +32,7 @@
                         </div>
                         <div class='btns'>
                             <form action="<c:url value='ctrl.do' />" method='POST'>
+                                <input type="hidden" value="${machine.mid}" name="mid" />
                                 <c:if test="${type != 'Docent'}"><input class='light btn' type='submit' name="btn" value='Reserveer' /></c:if>
                                 <c:if test="${type != 'Extern'}"><input class='light btn' type='submit' name="btn" value='Details' /></c:if>
                             </form>
@@ -48,7 +49,7 @@
             </c:if>
         </div>
         <form action="<c:url value='ctrl.do' />" method="post">
-            <input type="submit" name="btn" value="Logout" />
+            <input class='dark btn' type="submit" name="btn" value="Logout" />
         </form>
     </body>
 </html>
