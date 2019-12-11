@@ -7,7 +7,7 @@
 <%@page import="java.time.YearMonth"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% YearMonth yearMonthObject = YearMonth.of(2020, 06);
+<% YearMonth yearMonthObject = (YearMonth)session.getAttribute("date");
    int daysInMonth = yearMonthObject.lengthOfMonth();
    int firstDay = (yearMonthObject.atDay(1).getDayOfWeek().getValue() - 1); %>
 
