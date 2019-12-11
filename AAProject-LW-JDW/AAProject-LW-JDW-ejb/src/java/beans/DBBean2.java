@@ -64,7 +64,7 @@ public class DBBean2 implements DBBean2Remote {
      @Override
     public boolean isFree(Object moid){
         List<Reservaties> res = em.createQuery("SELECT r FROM Reservaties r WHERE r.moid = :moid").setParameter("moid",moid).getResultList();
-           return (res==null) ;
+           return (res.isEmpty()) ;
     }
     @Override
     public void reserveer(int m, int g){

@@ -51,7 +51,7 @@
                         } else {
                             out.println("'>" + dag);
                             for(Momenten m : (List<Momenten>)session.getAttribute("momvrij")) {
-                                Date d = Date.valueOf(yearMonthObject.atDay(i));
+                                Date d = Date.valueOf(yearMonthObject.atDay(i+1));
                                 if(m.getDatum().compareTo(d) == 0)
                                     out.println("<div class='uur vrij'>" + m.getStrt() + " Vrij</div>");
                             }
@@ -68,6 +68,9 @@
                     </td>
                 -->
             </table>
+            <c:forEach var="mom" items="${momvrij}">
+                <p>${mom.moid} </p>
+            </c:forEach>
         </div>
     </body>
 </html>
