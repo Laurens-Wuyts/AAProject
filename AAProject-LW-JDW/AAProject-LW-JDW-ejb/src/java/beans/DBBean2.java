@@ -56,9 +56,9 @@ public class DBBean2 implements DBBean2Remote {
                List mom = em.createQuery("SELECT m FROM Momenten m,Reservaties r WHERE m.mid = :mid and m.moid =r.moid ORDER BY m.strt").setParameter("mid",mid).getResultList();
                return mom;
     }
-      @Override
+     @Override
       public List getVrijMomentenMachine(Object mid){
-               List mom = em.createQuery("SELECT m FROM Momenten m WHERE m.mid = :mid and m.moid not in(SELECT moid FROM Reservaties r)").setParameter("mid",mid).getResultList();
+               List mom = em.createQuery("SELECT m FROM Momenten m WHERE m.mid = :mid and m.moid not in(SELECT r.moid FROM Reservaties r)").setParameter("mid",mid).getResultList();
                return mom;
     }
      @Override
