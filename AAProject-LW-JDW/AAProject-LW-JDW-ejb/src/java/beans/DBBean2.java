@@ -52,9 +52,8 @@ public class DBBean2 implements DBBean2Remote {
                return mom;
     }
      @Override
-    public Boolean isFree(int moid){
-        BigDecimal bd= new BigDecimal(moid);
-        Reservaties res = (Reservaties) em.createQuery("SELECT r FROM Reservaties r WHERE r.moid = :moid").setParameter("moid",bd).getSingleResult();
+    public Boolean isFree(Object moid){
+           Reservaties res = (Reservaties) em.createQuery("SELECT r FROM Reservaties r WHERE r.moid = :moid").setParameter("moid",moid).getSingleResult();
           if (res==null){
             return true;
           }
