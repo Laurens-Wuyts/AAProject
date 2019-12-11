@@ -7,6 +7,7 @@ package beans;
 
 import javax.ejb.Remote;
 import java.util.*;
+import java.math.*;
 /**
  *
  * @author r0614393
@@ -17,7 +18,7 @@ public interface DBBean2Remote {
     public List getMomenten();
     public List getMachines();
     public Object getMachineMid(int m);
-    public List getMomentenMachine(int m);
+    public List getMomentenMachine(BigDecimal mid);
     public Boolean isFree(int moid);
     public void MomentToevoegen(String strt,int mid ,String date);
     public void reserveer(int m, int g);
