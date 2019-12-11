@@ -56,6 +56,36 @@ public class Controller extends HttpServlet {
                     RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
                 }
+                  case "Verwijder":
+                {
+                    Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
+                    Bean.deleteMachine(m);
+                    RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                    view.forward (request,response );
+                }
+                 case "Toevoegen":
+                {
+                    RequestDispatcher view = request.getRequestDispatcher ("toevoegen.jsp" );
+                    view.forward (request,response );
+                }
+                case "Toepassen":
+                {
+                    
+                    RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                    view.forward (request,response );
+                }
+                case "Aanpassen":
+                {
+                    RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
+                    view.forward (request,response );
+                }
+                case "Edit":
+                {
+                    Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
+                    sessie.setAttribute("m",m);
+                    RequestDispatcher view = request.getRequestDispatcher ("edit.jsp" );
+                    view.forward (request,response );
+                }
                 case "Details":
                 {
                     Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
