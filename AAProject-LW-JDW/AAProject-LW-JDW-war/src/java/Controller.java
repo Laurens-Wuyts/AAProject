@@ -83,14 +83,27 @@ public class Controller extends HttpServlet {
                     view.forward (request,response );
                     break;
                 }
-                  case "resmom":
+                 case "Moment Toevoegen":
                 {
                     
-                    int t = Bean.MachineToevoegen((String)sessie.getAttribute("login"), request.getParameter("naam"), request.getParameter("info"), request.getParameter("nr"), request.getParameter("aprs"), request.getParameter("hprs"));
+                    Bean.MomentToevoegen( request.getParameter("strt"), sessie.getAttribute("m"), request.getParameter("date"));
                     init();
-                    Machines m = (Machines) Bean.getMachineMid(t);  
-                    sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
+                    view.forward (request,response );
+                    break;
+                }
+                   case "ResMom":
+                {
+                    sessie.setAttribute("moid", request.getParameter("moid"));
+                    RequestDispatcher view = request.getRequestDispatcher ("prijs.jsp" );
+                    view.forward (request,response );
+                    break;
+                }
+                  case "Akkoord":
+                {
+                    int m = Integer.parseInt((String)sessie.getAttribute("moid")); 
+                    Bean.reserveer(m, (String)sessie.getAttribute("login"));
+                    RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
                     break;
                 }

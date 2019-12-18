@@ -67,7 +67,7 @@ public class DBBean2 implements DBBean2Remote {
            return (res.isEmpty()) ;
     }
     @Override
-    public void reserveer(int m, int g){
+    public void reserveer(int m, String login){
         int nr;
         try{
         BigDecimal res;
@@ -79,8 +79,8 @@ public class DBBean2 implements DBBean2Remote {
         {
             nr=0;
                           }
-        Momenten mom= (Momenten) em.createNamedQuery("Momenten.findByMoid").setParameter("moid",new BigDecimal(m)).getSingleResult();
-        Gebruikers gebr = (Gebruikers) em.createNamedQuery("Gebruikers.findByLogin").setParameter("login",new BigDecimal(g)).getSingleResult();
+        Momenten mom= em.createNamedQuery("Momenten.findByMoid", Momenten.class).setParameter("moid",m).getSingleResult();
+        Gebruikers gebr = (Gebruikers) em.createNamedQuery("Gebruikers.findByLogin").setParameter("login",login).getSingleResult();
         BigDecimal bd= new BigDecimal(nr+1);
         Reservaties Res= new Reservaties(bd);
         Res.setLogin(gebr);
@@ -89,7 +89,7 @@ public class DBBean2 implements DBBean2Remote {
 
     }
     @Override
-    public void MomentToevoegen(String strt,int mid ,String date){
+    public void MomentToevoegen(String strt,Object mid ,String date){
         int nr;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try{            
@@ -104,6 +104,7 @@ public class DBBean2 implements DBBean2Remote {
                           }
         BigDecimal bd= new BigDecimal(nr+1);
         Momenten mom= new Momenten(bd);
+        mom.setMid((Machines)mid);
         mom.setStrt(new BigInteger(strt));
         try {
             Date d = df.parse (date);
