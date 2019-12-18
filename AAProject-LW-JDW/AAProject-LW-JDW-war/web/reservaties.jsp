@@ -4,6 +4,10 @@
     Author     : r0614393
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Locale"%>
+<%@page import="java.time.format.FormatStyle"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.YearMonth"%>
@@ -32,6 +36,9 @@
                 <input class='dark btn' type='submit' name='btn' value='Vorige maand' />
                 <input class='dark btn' type='submit' name='btn' value='Volgende maand' />
             </form>
+            <h2><% 
+                out.print(yearMonthObject.getMonthValue() + " - " + yearMonthObject.getYear());
+            %> </h2>
             <table class='calendar'>
                 <tr>
                     <th>Maandag</th>
