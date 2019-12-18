@@ -72,7 +72,7 @@
                             for(Momenten m : (List<Momenten>)session.getAttribute("momres")) {
                                 Date d = Date.valueOf(yearMonthObject.atDay(dag));
                                 if(m.getDatum().compareTo(d) == 0)
-                                    out.println("<div class='uur bezet'>" + m.getStrt() + " " + (String)session.getAttribute("login") + "</div>");
+                                    out.println("<div class='uur bezet'>" + m.getStrt() + " Bezet</div>");
                             }
                             out.println("</td>");
                         }

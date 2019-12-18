@@ -37,7 +37,7 @@ public class DBBean2 implements DBBean2Remote {
                return mom;
     }
     public Object getMomentenMoid(int moid){
-       Momenten mom = (Momenten) em.createNamedQuery("\"Momenten.findByMoid\"").setParameter("moid",new BigDecimal(moid)).getSingleResult();
+       Momenten mom = (Momenten) em.createNamedQuery("Momenten.findByMoid").setParameter("moid",new BigDecimal(moid)).getSingleResult();
                return mom;
     }
     @Override

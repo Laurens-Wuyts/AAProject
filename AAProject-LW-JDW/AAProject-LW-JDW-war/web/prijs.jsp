@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Gelieve uw reservatie te confirmeren</h1>
-        <c:if test="${type == 'Extern'}">huurprijs:${mom.getMid().getHprs}</c:if>
+        <c:if test="${type == 'Extern'}"><p>huurprijs: ${mom.getMid().getHprs()} euro </p></c:if>
         
          
         <form action="<c:url value='ctrl.do' />" method='POST'>

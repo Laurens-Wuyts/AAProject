@@ -13,6 +13,5 @@
     </head>
     <body>
         <h1>Error: We zorgen dat dit zo snel mogelijk in orde komt.</h1>
-        <img src=".\img\monkey.gif" alt="" >
     </body>
 </html>

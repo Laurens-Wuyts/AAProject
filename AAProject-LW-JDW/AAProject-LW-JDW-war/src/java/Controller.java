@@ -114,6 +114,7 @@ public class Controller extends HttpServlet {
                 {
                     Momenten mom = (Momenten) Bean.getMomentenMoid(Integer.parseInt(request.getParameter("moid")));
                     sessie.setAttribute("mom", mom);
+                    sessie.setAttribute("moid", request.getParameter("moid"));
                     RequestDispatcher view = request.getRequestDispatcher ("prijs.jsp" );
                     view.forward (request,response );
                     break;
