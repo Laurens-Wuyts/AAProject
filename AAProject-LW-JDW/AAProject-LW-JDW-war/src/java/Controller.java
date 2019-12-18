@@ -55,29 +55,39 @@ public class Controller extends HttpServlet {
                 {
                     RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                   case "Verwijder":
                 {
                     Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
                     Bean.deleteMachine(m);
+                    init();
                     RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                  case "Toevoegen":
                 {
                     RequestDispatcher view = request.getRequestDispatcher ("toevoegen.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                 case "Toepassen":
                 {
                     
                     RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                 case "Aanpassen": 
                 {
+                    Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));           
+                    Bean.MachineAanpassen(m, request.getParameter("naam"), request.getParameter("info"), request.getParameter("nr"), request.getParameter("aprs"), request.getParameter("hprs"));
+                    init();
+                    sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                 case "Edit":
                 {
@@ -85,6 +95,7 @@ public class Controller extends HttpServlet {
                     sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("edit.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                 case "Details":
                 {
@@ -92,6 +103,7 @@ public class Controller extends HttpServlet {
                     sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                 case "Reserveer":
                 {   
@@ -117,9 +129,11 @@ public class Controller extends HttpServlet {
                     sessie.setAttribute("date",y);                    
                     RequestDispatcher view = request.getRequestDispatcher ("reservaties.jsp" );
                     view.forward (request,response );
+                    break;
                 }
                default:
-                break;
+                RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                    view.forward (request,response );
                }
         }
         if (sessie.getAttribute("type")==null){
