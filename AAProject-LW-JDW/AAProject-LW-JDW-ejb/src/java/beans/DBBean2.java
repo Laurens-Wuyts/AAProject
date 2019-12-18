@@ -10,7 +10,8 @@ import java.text.ParseException;
 import java.util.*;
 import javax.ejb.Stateless;
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.time.Instant;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,9 +90,8 @@ public class DBBean2 implements DBBean2Remote {
 
     }
     @Override
-    public void MomentToevoegen(String strt,Object mid ,String date){
+    public void MomentToevoegen(String strt,Object mid ,String d){
         int nr;
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try{            
         BigDecimal res;
         res =(BigDecimal) em.createQuery("SELECT max(m.moid) FROM Momenten m").getSingleResult();
@@ -106,19 +106,13 @@ public class DBBean2 implements DBBean2Remote {
         Momenten mom= new Momenten(bd);
         mom.setMid((Machines)mid);
         mom.setStrt(new BigInteger(strt));
-        try {
-            Date d = df.parse (date);
-            mom.setDatum(d);
-        } catch (ParseException ex) {
-            Logger.getLogger(DBBean2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        mom.setDatum(Date.valueOf(d));
         em.persist(mom);
 
     }
     @Override
     public int MachineToevoegen(String  login, String naam,String info,String msnr,String aprs,String hprs){
         int nr;
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try{            
         BigDecimal res;
         res =(BigDecimal) em.createQuery("SELECT max(m.mid) FROM Machines m").getSingleResult();

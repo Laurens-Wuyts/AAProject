@@ -86,7 +86,7 @@ public class Controller extends HttpServlet {
                  case "Moment Toevoegen":
                 {
                     
-                    Bean.MomentToevoegen( request.getParameter("strt"), sessie.getAttribute("m"), request.getParameter("date"));
+                    Bean.MomentToevoegen( request.getParameter("strt"), sessie.getAttribute("m"),request.getParameter("date"));
                     init();
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
