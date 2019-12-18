@@ -67,7 +67,7 @@ public class Controller extends HttpServlet {
                     break;
                 }
                  case "Toevoegen":
-                {
+                {  
                     RequestDispatcher view = request.getRequestDispatcher ("toevoegen.jsp" );
                     view.forward (request,response );
                     break;
@@ -75,7 +75,22 @@ public class Controller extends HttpServlet {
                 case "Toepassen":
                 {
                     
-                    RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
+                    int t = Bean.MachineToevoegen((String)sessie.getAttribute("login"), request.getParameter("naam"), request.getParameter("info"), request.getParameter("nr"), request.getParameter("aprs"), request.getParameter("hprs"));
+                    init();
+                    Machines m = (Machines) Bean.getMachineMid(t);  
+                    sessie.setAttribute("m",m);
+                    RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
+                    view.forward (request,response );
+                    break;
+                }
+                  case "resmom":
+                {
+                    
+                    int t = Bean.MachineToevoegen((String)sessie.getAttribute("login"), request.getParameter("naam"), request.getParameter("info"), request.getParameter("nr"), request.getParameter("aprs"), request.getParameter("hprs"));
+                    init();
+                    Machines m = (Machines) Bean.getMachineMid(t);  
+                    sessie.setAttribute("m",m);
+                    RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
                     break;
                 }
@@ -84,6 +99,7 @@ public class Controller extends HttpServlet {
                     Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));           
                     Bean.MachineAanpassen(m, request.getParameter("naam"), request.getParameter("info"), request.getParameter("nr"), request.getParameter("aprs"), request.getParameter("hprs"));
                     init();
+                    m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));  
                     sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
@@ -137,6 +153,9 @@ public class Controller extends HttpServlet {
                }
         }
         if (sessie.getAttribute("type")==null){
+            String name = request.getUserPrincipal().getName();
+            sessie.setAttribute("login",name);
+            sessie.setAttribute("gebruiker",Bean.getGebruiker(name));
             if (request.isUserInRole("Docent")){
 
                 sessie.setAttribute("type","Docent");
@@ -153,9 +172,7 @@ public class Controller extends HttpServlet {
                 RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                 view.forward (request,response );
             }
-            String name = request.getUserPrincipal().getName();
-            sessie.setAttribute("login",name);
-            sessie.setAttribute("gebruiker",Bean.getGebruiker(name));
+            
            }
         
         

@@ -115,7 +115,7 @@ public class DBBean2 implements DBBean2Remote {
 
     }
     @Override
-    public void MachineToevoegen(int login, String naam,String info,String msnr,String aprs,String hprs){
+    public int MachineToevoegen(String  login, String naam,String info,String msnr,String aprs,String hprs){
         int nr;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try{            
@@ -130,7 +130,7 @@ public class DBBean2 implements DBBean2Remote {
                           }
         BigDecimal bd= new BigDecimal(nr+1);
         Machines mach= new Machines(bd);
-        String opl = (String) em.createQuery("SELECT g.opl FROM Gebruikers g WHERE g.login = :login").setParameter("login",new BigDecimal(login)).getSingleResult();
+        String opl = (String) em.createQuery("SELECT g.opl FROM Gebruikers g WHERE g.login = :login").setParameter("login",login).getSingleResult();
         mach.setMopl(opl);
         mach.setMnaam(naam);
         mach.setMinfo(info);
@@ -138,6 +138,7 @@ public class DBBean2 implements DBBean2Remote {
         mach.setAprs(new BigInteger(aprs));
         mach.setHprs(new BigInteger(hprs));
         em.persist(mach);
+        return nr+1;
 
     }
     @Override

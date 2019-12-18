@@ -15,6 +15,9 @@
         <title>Overzicht</title>
     </head>
     <body>
+       gebruiker: ${gebruiker.login}
+         opl       ${gebruiker.opl}
+        login: ${login}
         <div class="container">
             <c:forEach var="machine" items="${machines}">
                 <div class='pc_info'>
@@ -29,7 +32,7 @@
                                 <input type="hidden" value="${machine.mid}" name="mid" />
                                 <c:if test="${type != 'Docent'}"><input class='light btn' type='submit' name="btn" value='Reserveer' /></c:if>
                                 <c:if test="${type != 'Extern'}"><input class='light btn' type='submit' name="btn" value='Details' /></c:if>
-                                <c:if test="${type == 'Docent'}"><input class='light btn' type='submit' name='btn'  value='Edit' />
+                                <c:if test="${type == 'Docent' && gebruiker.opl.equals(machine.mopl)}"><input class='light btn' type='submit' name='btn'  value='Edit' />
                                                                  <input class='light btn' type='submit' name='btn'  value='Verwijder' /> </c:if>
                             </form>
                         </div>

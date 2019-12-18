@@ -1,7 +1,7 @@
 <%-- 
-    Document   : edit
-    Created on : 11-dec-2019, 14:32:16
-    Author     : r0614393
+    Document   : toevoegen
+    Created on : 18-dec-2019, 14:01:09
+    Author     : r0614941
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,16 +22,14 @@
             <img src='pc_icon.png' class="sidebyside"/>
             <div class="text sidebyside">
                 <form action="<c:url value='ctrl.do' />" method='POST'>
-                    <input type="hidden" name="mid" value="${m.mid}"  />
-                    Naam:<input type='text' name='naam' value='${m.mnaam}' />
-                    Info:<input type='text' name='info' value='${m.minfo}' />
+                    Naam:<input type='text' name='naam' value='' />
+                    Info:<input type='text' name='info' value='' />
                     <hr />
-                    Opleiding: ${m.mopl}<br>
-                    SerieNummer<input type='text' name='nr'  value='${m.msnr}' /><br>
-                    Aankoopprijs<input type='text' name='aprs'  value='${m.aprs}' /><br>
-                    HuurPrijs<input type='text' name='hprs' value='${m.hprs}' /><br>
+                    SerieNummer<input type='text' name='nr'  value='' /><br>
+                    Aankoopprijs<input type='text' name='aprs'  value='' /><br>
+                    HuurPrijs<input type='text' name='hprs' value='' /><br>
                     <input class='dark btn' type='submit' name='btn'  value='Overzicht' />
-                    <input class='dark btn' type='submit' name='btn'  value='Aanpassen' />
+                    <input class='dark btn' type='submit' name='btn'  value='Toepassen' />
                 </form>
             </div>
 
