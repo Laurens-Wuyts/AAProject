@@ -27,6 +27,11 @@
     <body>
         <div class="page wide">
             <h1>Reservaties:</h1>
+            <form action="<c:url value='ctrl.do' />" method='POST'>
+                <input class='dark btn' type='submit' name='btn' value='Overzicht' />
+                <input class='dark btn' type='submit' name='btn' value='Vorige maand' />
+                <input class='dark btn' type='submit' name='btn' value='Volgende maand' />
+            </form>
             <table class='calendar'>
                 <tr>
                     <th>Maandag</th>
@@ -60,7 +65,7 @@
                             for(Momenten m : (List<Momenten>)session.getAttribute("momres")) {
                                 Date d = Date.valueOf(yearMonthObject.atDay(dag));
                                 if(m.getDatum().compareTo(d) == 0)
-                                    out.println("<div class='uur bezet'>" + m.getStrt() + " Bezet</div>");
+                                    out.println("<div class='uur bezet'>" + m.getStrt() + " " + (String)session.getAttribute("login") + "</div>");
                             }
                             out.println("</td>");
                         }
@@ -68,12 +73,6 @@
                     out.println("</tr>");
                 }
                 %>
-<!--                    <td>1
-                            <div class='uur vrij'>11:00-12:00 Vrij</div>
-                            <div class='uur bezet'>12-13 R0614393</div>
-                            <div class='uur vrij'>13-14 Vrij</div>
-                    </td>
-                -->
             </table>
         </div>
     </body>
