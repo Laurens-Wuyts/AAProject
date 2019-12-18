@@ -51,9 +51,16 @@
                         } else {
                             out.println("'>" + dag);
                             for(Momenten m : (List<Momenten>)session.getAttribute("momvrij")) {
-                                Date d = Date.valueOf(yearMonthObject.atDay(i+1));
+                                Date d = Date.valueOf(yearMonthObject.atDay(dag));
+                                if(m.getDatum().compareTo(d) == 0) {
+                                    out.println("<a href='ctrl.do?btn=ResMom&moid=" + m.getMoid() +"'><div class='uur vrij' >" + m.getStrt() + " Vrij</div></a>");
+                                }
+                            }
+                            
+                            for(Momenten m : (List<Momenten>)session.getAttribute("momres")) {
+                                Date d = Date.valueOf(yearMonthObject.atDay(dag));
                                 if(m.getDatum().compareTo(d) == 0)
-                                    out.println("<div class='uur vrij'>" + m.getStrt() + " Vrij</div>");
+                                    out.println("<div class='uur bezet'>" + m.getStrt() + " Bezet</div>");
                             }
                             out.println("</td>");
                         }
@@ -68,9 +75,6 @@
                     </td>
                 -->
             </table>
-            <c:forEach var="mom" items="${momvrij}">
-                <p>${mom.moid} </p>
-            </c:forEach>
         </div>
     </body>
 </html>
