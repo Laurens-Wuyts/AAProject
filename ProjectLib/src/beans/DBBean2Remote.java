@@ -16,6 +16,7 @@ import java.math.*;
 public interface DBBean2Remote {
     public Object getGebruiker(String l);
     public List getMomenten();
+    public Object getMomentenMoid(int moid);
     public List getMachines();
     public Object getMachineMid(int m);
     public List getMomentenMachine(Object mid);

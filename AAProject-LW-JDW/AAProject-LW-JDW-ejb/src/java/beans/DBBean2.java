@@ -36,6 +36,10 @@ public class DBBean2 implements DBBean2Remote {
        List mom = em.createNamedQuery("Momenten.findAll").getResultList();
                return mom;
     }
+    public Object getMomentenMoid(int moid){
+       Momenten mom = (Momenten) em.createNamedQuery("\"Momenten.findByMoid\"").setParameter("moid",new BigDecimal(moid)).getSingleResult();
+               return mom;
+    }
     @Override
    public List getMachines(){
       List ma = em.createNamedQuery("Machines.findAll").getResultList();
