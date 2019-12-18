@@ -74,7 +74,7 @@ public class Controller extends HttpServlet {
                     RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
                 }
-                case "Aanpassen":
+                case "Aanpassen": 
                 {
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );

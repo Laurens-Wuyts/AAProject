@@ -35,10 +35,7 @@
 
             <div class='btns'>
                 <form action="<c:url value='ctrl.do' />" method='POST'>
-                        <c:if test="${type != 'Docent'}">
-                            <input class='dark btn' type='submit' name='btn'  value='Reserveer' />
-                        </c:if>
-                        <input class='dark btn' type='submit' name='btn'  value='Overzicht' />
+                        <input class='dark btn' type='submit' name='btn'  value='Aanpassen' />
                 </form>
             </div>
         </div>

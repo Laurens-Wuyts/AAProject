@@ -30,9 +30,11 @@
 
             <div class='btns'>
                 <form action="<c:url value='ctrl.do' />" method='POST'>
+                    <input type="hidden" value="${m}" name="mid" />
                         <c:if test="${type != 'Docent'}">
-                            <input class='dark btn' type='submit' name='btn'  value='Reserveer' />
+                            <input class='dark btn' type='submit' name='btn'  value='Reserveer' />    
                         </c:if>
+                        <c:if test="${type == 'Docent'}"><input class='dark btn' type='submit' name='btn'  value='Edit' /> </c:if>                    
                         <input class='dark btn' type='submit' name='btn'  value='Overzicht' />
                 </form>
             </div>
