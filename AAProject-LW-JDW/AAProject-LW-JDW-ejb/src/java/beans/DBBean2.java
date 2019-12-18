@@ -141,6 +141,19 @@ public class DBBean2 implements DBBean2Remote {
 
     }
     @Override
+    public void MachineAanpassen(int login, String mid,String naam,String info,String msnr,String aprs,String hprs){
+        Machines mach= em.createNamedQuery("Machines.findByMid", Machines.class).setParameter("mid", mid).getSingleResult();
+        String opl = (String) em.createQuery("SELECT g.opl FROM Gebruikers g WHERE g.login = :login").setParameter("login",new BigDecimal(login)).getSingleResult();
+        mach.setMopl(opl);
+        mach.setMnaam(naam);
+        mach.setMinfo(info);
+        mach.setMsnr(new BigInteger(msnr));
+        mach.setAprs(new BigInteger(aprs));
+        mach.setHprs(new BigInteger(hprs));
+        em.persist(mach);
+
+    }
+    @Override
     public void deleteMachine(Object mid) {
         Machines r = em.createNamedQuery("Machines.findByMid", Machines.class).setParameter("mid", mid).getSingleResult();
         em.remove(r);

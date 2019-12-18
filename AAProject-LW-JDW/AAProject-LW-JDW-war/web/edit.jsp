@@ -22,13 +22,14 @@
             <img src='pc_icon.png' class="sidebyside"/>
             <div class="text sidebyside">
                 <form action="<c:url value='ctrl.do' />" method='POST'>
-                    <input type='text' value='${m.mnaam}' />
-                    <input type='text' value='${m.minfo}' />
+                    <input type="hidden" name="mid" value="${m.mid}"  />
+                    Naam:<input type='text' name='naam' value='${m.mnaam}' />
+                    Info:<input type='text' name='info' value='${m.minfo}' />
                     <hr />
-                    <input type='text' value='${m.mopl}' />
-                    <input type='text' value='${m.msnr}' />
-                    <input type='text' value='${m.aprs}' />
-                    <input type='text' value='${m.hprs}' />
+                    Opleiding:<input type='text' name='opl' value='${m.mopl}' /><br>
+                    SerieNummer<input type='text' name='nr'  value='${m.msnr}' /><br>
+                    Aankoopprijs<input type='text' name='aprs'  value='${m.aprs}' /><br>
+                    HuurPrijs<input type='text' name='hprs' value='${m.hprs}' /><br>
                     <input class='dark btn' type='submit' name='btn'  value='Overzicht' />
                 </form>
             </div>
