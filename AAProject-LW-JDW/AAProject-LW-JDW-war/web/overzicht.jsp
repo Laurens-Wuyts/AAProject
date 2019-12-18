@@ -20,9 +20,6 @@
                 <div class='pc_info'>
                     <img src='pc_icon.png' class='sidebyside'/>
                     <div class='box sidebyside'>
-                        <div class='admin'>
-                            
-                        </div>
                         <div class='info'>
                             <h3>${machine.mnaam}</h3>
                             <p>Opleiding: ${machine.mopl}</p>
@@ -32,7 +29,8 @@
                                 <input type="hidden" value="${machine.mid}" name="mid" />
                                 <c:if test="${type != 'Docent'}"><input class='light btn' type='submit' name="btn" value='Reserveer' /></c:if>
                                 <c:if test="${type != 'Extern'}"><input class='light btn' type='submit' name="btn" value='Details' /></c:if>
-                                <c:if test="${type == 'Docent'}"><input class='light btn' type='submit' name='btn'  value='Edit' /> </c:if>
+                                <c:if test="${type == 'Docent'}"><input class='light btn' type='submit' name='btn'  value='Edit' />
+                                                                 <input class='light btn' type='submit' name='btn'  value='Verwijder' /> </c:if>
                             </form>
                         </div>
                     </div>
