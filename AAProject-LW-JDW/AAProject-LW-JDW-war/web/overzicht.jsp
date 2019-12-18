@@ -15,9 +15,6 @@
         <title>Overzicht</title>
     </head>
     <body>
-       gebruiker: ${gebruiker.login}
-         opl       ${gebruiker.opl}
-        login: ${login}
         <div class="container">
             <c:forEach var="machine" items="${machines}">
                 <div class='pc_info'>

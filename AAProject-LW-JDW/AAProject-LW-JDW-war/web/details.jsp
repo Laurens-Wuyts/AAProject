@@ -34,8 +34,18 @@
                         <c:if test="${type != 'Docent'}">
                             <input class='dark btn' type='submit' name='btn'  value='Reserveer' />    
                         </c:if>
-                        <c:if test="${type == 'Docent'}"><input class='dark btn' type='submit' name='btn'  value='Edit' /> </c:if>                    
+                        <c:if test="${type == 'Docent'}"><input class='dark btn' type='submit' name='btn'  value='Edit' /> 
+                                        
+                                               </c:if>                    
                         <input class='dark btn' type='submit' name='btn'  value='Overzicht' />
+                        <c:if test="${type == 'Docent'}">
+                            <hr/>
+                            <h2> Moment toevoegen</h2>
+                             Startuur:<input type='text' name='strt' value='' />
+                             datum:<input type='date' name='date' value='' />
+                        <input class='dark btn' type='submit' name='btn'  value='Moment Toevoegen' />
+                        </c:if>      
+                        
                 </form>
             </div>
         </div>

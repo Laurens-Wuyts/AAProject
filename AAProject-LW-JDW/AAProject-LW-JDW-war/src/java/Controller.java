@@ -53,6 +53,7 @@ public class Controller extends HttpServlet {
                 }
                 case "Overzicht":
                 {
+                    reloadMachines();
                     RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
                     break;
@@ -61,7 +62,7 @@ public class Controller extends HttpServlet {
                 {
                     Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));
                     Bean.deleteMachine(m);
-                    init();
+                    reloadMachines();
                     RequestDispatcher view = request.getRequestDispatcher ("overzicht.jsp" );
                     view.forward (request,response );
                     break;
@@ -76,25 +77,43 @@ public class Controller extends HttpServlet {
                 {
                     
                     int t = Bean.MachineToevoegen((String)sessie.getAttribute("login"), request.getParameter("naam"), request.getParameter("info"), request.getParameter("nr"), request.getParameter("aprs"), request.getParameter("hprs"));
-                    init();
+                    reloadMachines();
                     Machines m = (Machines) Bean.getMachineMid(t);  
                     sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
                     break;
                 }
+                case "Vorige maand":
+                {
+                    
+                    this.y=this.y.minusMonths(1);
+                    sessie.setAttribute("date",y);  
+                    RequestDispatcher view = request.getRequestDispatcher ("reservaties.jsp" );
+                    view.forward (request,response );
+                    break;
+                }
+                case "Volgende maand":
+                {
+                    this.y=this.y.plusMonths(1);
+                    sessie.setAttribute("date",y);  
+                    RequestDispatcher view = request.getRequestDispatcher ("reservaties.jsp" );
+                    view.forward (request,response );
+                    break;
+                }
                  case "Moment Toevoegen":
                 {
                     
-                    Bean.MomentToevoegen( request.getParameter("strt"), sessie.getAttribute("m"), request.getParameter("date"));
-                    init();
+                    Bean.MomentToevoegen( request.getParameter("strt"), sessie.getAttribute("m"),request.getParameter("date"));
+                    reloadMachines();
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
                     view.forward (request,response );
                     break;
                 }
                    case "ResMom":
                 {
-                    sessie.setAttribute("moid", request.getParameter("moid"));
+                    Momenten mom = (Momenten) Bean.getMomentenMoid(Integer.parseInt(request.getParameter("moid")));
+                    sessie.setAttribute("mom", mom);
                     RequestDispatcher view = request.getRequestDispatcher ("prijs.jsp" );
                     view.forward (request,response );
                     break;
@@ -111,7 +130,7 @@ public class Controller extends HttpServlet {
                 {
                     Machines m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));           
                     Bean.MachineAanpassen(m, request.getParameter("naam"), request.getParameter("info"), request.getParameter("nr"), request.getParameter("aprs"), request.getParameter("hprs"));
-                    init();
+                    reloadMachines();
                     m = (Machines) Bean.getMachineMid(Integer.parseInt(request.getParameter("mid")));  
                     sessie.setAttribute("m",m);
                     RequestDispatcher view = request.getRequestDispatcher ("details.jsp" );
@@ -232,9 +251,12 @@ public class Controller extends HttpServlet {
     }// </editor-fold>
  @Override
     public void init(){
-        List<Machines> ma= Bean.getMachines();
-        getServletContext().setAttribute("machines",ma);
+        reloadMachines();
         this.y = YearMonth.now();
         
+    }
+    public void reloadMachines(){
+        List<Machines> ma= Bean.getMachines();
+        getServletContext().setAttribute("machines",ma);
     }
 }

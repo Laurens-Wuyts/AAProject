@@ -13,7 +13,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World! ${moid}</h1>
+        <h1>Gelieve uw reservatie te confirmeren</h1>
+        <c:if test="${type == 'Extern'}">huurprijs:${mom.getMid().getHprs}</c:if>
+        
+         
         <form action="<c:url value='ctrl.do' />" method='POST'>
                           <input class='light btn' type='submit' name='btn'  value='Akkoord' />
         </form>
