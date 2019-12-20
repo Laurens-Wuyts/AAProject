@@ -162,10 +162,12 @@ public class Controller extends HttpServlet {
                     }
                     Machines ma = (Machines)sessie.getAttribute("m");
                     List<Momenten> momres = new ArrayList<>();
+                    List<String> user = new ArrayList<>();
                     List<Momenten> mom = Bean.getMomentenMachine(ma);
                     for(int i=0;i<mom.size();){
                         if(!Bean.isFree(mom.get(i))) {
                             momres.add(mom.get(i));
+                            user.add(Bean.getUserResMoid(mom.get(i)));
                             mom.remove(i);
                             
                         } 
@@ -175,6 +177,7 @@ public class Controller extends HttpServlet {
                     }
                     sessie.setAttribute("momvrij",mom);
                     sessie.setAttribute("momres",momres);
+                    sessie.setAttribute("user",user);
                     sessie.setAttribute("date",y);                    
                     RequestDispatcher view = request.getRequestDispatcher ("reservaties.jsp" );
                     view.forward (request,response );

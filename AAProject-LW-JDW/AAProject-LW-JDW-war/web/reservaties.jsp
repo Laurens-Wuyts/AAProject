@@ -69,10 +69,13 @@
                                 }
                             }
                             
+                            int idx = 0;
+                            List<String> users = (List<String>)session.getAttribute("user");
                             for(Momenten m : (List<Momenten>)session.getAttribute("momres")) {
                                 Date d = Date.valueOf(yearMonthObject.atDay(dag));
                                 if(m.getDatum().compareTo(d) == 0)
-                                    out.println("<div class='uur bezet'>" + m.getStrt() + "u Bezet</div>");
+                                    out.println("<div class='uur bezet'>" + m.getStrt() + "u " + users.get(idx) + "</div>");
+                                idx++;
                             }
                             out.println("</td>");
                         }

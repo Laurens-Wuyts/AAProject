@@ -77,6 +77,10 @@ public class DBBean2 implements DBBean2Remote {
         Object res = em.createQuery("SELECT m.datum, m.strt FROM Momenten m WHERE m IN (SELECT r.moid FROM Reservaties r WHERE r.rid = :rid)").setParameter("rid", rid).getSingleResult();
         return (Object [])res;
     }
+    public String getUserResMoid(Object moid) {
+        Object res = em.createQuery("SELECT r.login.login FROM Reservaties r WHERE r.moid = :moid").setParameter("moid",moid).getSingleResult();
+        return (String)res;
+    }
     @Override
     public List getVrijMomentenMachine(Object mid){
         List mom = em.createQuery("SELECT m FROM Momenten m WHERE m.mid = :mid and m.moid not in(SELECT r.moid FROM Reservaties r)").setParameter("mid",mid).getResultList();
