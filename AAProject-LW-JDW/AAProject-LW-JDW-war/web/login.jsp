@@ -14,9 +14,9 @@
     <body>
         <h1>Log je in</h1>
         <form method= "post" action="j_security_check" >
-        <input type="text" name= "j_username" >
-        <input type="password" name= "j_password" >
-        <input type="submit" name="knop" value="inloggen" /> 
+            <input type="text" name= "j_username" >
+            <input type="password" name= "j_password" >
+            <input type="submit" name="knop" value="inloggen" /> 
         </form>
     </body>
 </html>

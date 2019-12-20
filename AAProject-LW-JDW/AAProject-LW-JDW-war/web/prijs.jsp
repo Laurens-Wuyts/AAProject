@@ -10,15 +10,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="style.css">
+        <title>Prijs</title>
+
+        <!--FONTS-->
+        <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
     </head>
     <body>
-        <h1>Gelieve uw reservatie te confirmeren</h1>
-        <c:if test="${type == 'Extern'}"><p>huurprijs: ${mom.getMid().getHprs()} euro </p></c:if>
-        
+        <div class="page">
+            <h1>Gelieve uw reservatie te confirmeren</h1>
+            <c:if test="${type == 'Extern'}"><p>huurprijs: ${mom.getMid().getHprs()} euro </p></c:if>
          
-        <form action="<c:url value='ctrl.do' />" method='POST'>
-                          <input class='light btn' type='submit' name='btn'  value='Akkoord' />
-        </form>
+            <form action="<c:url value='ctrl.do' />" method='POST'>
+                <input class='dark btn' type='submit' name='btn'  value='Akkoord' />
+            </form>
+        </div>
     </body>
 </html>
